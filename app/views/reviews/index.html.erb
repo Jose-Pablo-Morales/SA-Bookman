@@ -2,6 +2,9 @@
 
 <h1>Reviews</h1>
 
+<%= link_to "New review", new_review_path %>
+
+
 <div id="reviews">
   <% @reviews.each do |review| %>
     <%= render review %>
@@ -11,4 +14,3 @@
   <% end %>
 </div>
 
-<%= link_to "New review", new_review_path %>

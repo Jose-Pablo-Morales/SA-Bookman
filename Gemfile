@@ -2,6 +2,10 @@ source "https://rubygems.org"
 
 ruby "3.3.4"
 
+
+gem 'faker'
+
+
 # gem 'pg'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

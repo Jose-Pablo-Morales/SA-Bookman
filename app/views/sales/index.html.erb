@@ -2,6 +2,8 @@
 
 <h1>Sales</h1>
 
+<%= link_to "New sale", new_sale_path %>
+
 <div id="sales">
   <% @sales.each do |sale| %>
     <%= render sale %>
@@ -11,4 +13,4 @@
   <% end %>
 </div>
 
-<%= link_to "New sale", new_sale_path %>
+

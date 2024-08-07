@@ -2,6 +2,8 @@
 
 <h1>Authors</h1>
 
+<%= link_to "New author", new_author_path %>
+
 <div id="authors">
   <% @authors.each do |author| %>
     <%= render author %>
@@ -11,4 +13,4 @@
   <% end %>
 </div>
 
-<%= link_to "New author", new_author_path %>
+
