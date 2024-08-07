@@ -2,9 +2,11 @@ source "https://rubygems.org"
 
 ruby "3.3.4"
 
-
 gem 'faker'
 
+gem 'ransack'
+
+gem 'kaminari'
 
 # gem 'pg'
 

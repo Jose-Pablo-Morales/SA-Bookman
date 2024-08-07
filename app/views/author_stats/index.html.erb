@@ -1,0 +1,64 @@
+<h1>Author Statistics</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th><%= link_to 'Author', author_stats_path(sort: 'name') %></th>
+      <th><%= link_to 'Number of Books', author_stats_path(sort: 'books_count') %></th>
+      <th><%= link_to 'Average Score', author_stats_path(sort: 'average_score') %></th>
+      <th><%= link_to 'Total Sales', author_stats_path(sort: 'total_sales') %></th>
+    </tr>
+    <tr>
+      <td><input type="text" id="author-filter" placeholder="Filter Authors"></td>
+      <td><input type="number" id="books-filter" placeholder="Min Books"></td>
+      <td><input type="number" id="score-filter" placeholder="Min Score"></td>
+      <td><input type="number" id="sales-filter" placeholder="Min Sales"></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @authors.each do |author| %>
+      <tr>
+        <td><%= author.name %></td>
+        <td><%= author.books_count %></td>
+        <td><%= number_with_precision(author.average_score, precision: 2) %></td>
+        <td><%= author.total_sales %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter function for each column
+    function filterTable(inputId, columnIndex) {
+      const input = document.getElementById(inputId);
+      const filter = input.value.toUpperCase();
+      const table = document.querySelector('.table tbody');
+      const rows = table.getElementsByTagName('tr');
+
+      for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        const cellValue = cells[columnIndex].textContent || cells[columnIndex].innerText;
+        if (cellValue.toUpperCase().indexOf(filter) > -1) {
+          rows[i].style.display = '';
+        } else {
+          rows[i].style.display = 'none';
+        }
+      }
+    }
+
+    // Add event listeners to each filter input
+    document.getElementById('author-filter').addEventListener('keyup', function() {
+      filterTable('author-filter', 0);
+    });
+    document.getElementById('books-filter').addEventListener('keyup', function() {
+      filterTable('books-filter', 1);
+    });
+    document.getElementById('score-filter').addEventListener('keyup', function() {
+      filterTable('score-filter', 2);
+    });
+    document.getElementById('sales-filter').addEventListener('keyup', function() {
+      filterTable('sales-filter', 3);
+    });
+  });
+</script>
