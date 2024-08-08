@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Top 50 Selling Books</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Top 50 Selling Books of All Time</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>Total Sales</th>
+        <th>Author Total Sales</th>
+        <th>Top 5 of Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.name %></td>
+          <td><%= book.author_name %></td>
+          <td><%= book.total_sales %></td>
+          <td><%= book.author_total_sales %></td>
+          <td><%= book.top_5_of_year ? 'Yes' : 'No' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>
+

@@ -57,6 +57,10 @@ class BooksController < ApplicationController
     end
   end
 
+  def top_selling
+    @top_books = Book.top_50_selling_books
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
