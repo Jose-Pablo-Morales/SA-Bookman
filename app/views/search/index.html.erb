@@ -1,0 +1,32 @@
+<h1>Search Books</h1>
+
+<%= form_with url: top_books_path, method: :get, local: true do %>
+  <%= label_tag :query, "Search for:" %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Summary</th>
+      <th>Publication Date</th>
+      <th>Number of Sales</th>
+      <th>Average Review Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.name %></td>
+        <td><%= book.summary %></td>
+        <td><%= book.publication_date %></td>
+        <td><%= book.number_of_sales %></td>
+        <td><%= book.average_score %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @books %>

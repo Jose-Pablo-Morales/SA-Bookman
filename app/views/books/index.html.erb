@@ -4,6 +4,13 @@
 
 <%= link_to "New book", new_book_path %>
 
+<%= form_with url: books_path, method: :get, local: true do %>
+  <%= label_tag :query, "Search for books:" %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<h2>Search Results</h2>
 <div id="books">
   <% @books.each do |book| %>
     <%= render book %>
@@ -12,5 +19,7 @@
     </p>
   <% end %>
 </div>
+
+<%= paginate @books %>
 
 
