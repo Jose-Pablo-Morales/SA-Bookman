@@ -1,0 +1,25 @@
+<!-- app/views/top_selling_books/index.html.erb -->
+<h1>Top 50 Selling Books of All Time</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Book Name</th>
+      <th>Author Name</th>
+      <th>Total Book Sales</th>
+      <th>Total Author Sales</th>
+      <th>Top 5 in Year of Publication</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @top_books_data.each do |book| %>
+      <tr>
+        <td><%= book[:book_name] %></td>
+        <td><%= book[:author_name] %></td>
+        <td><%= book[:total_book_sales] %></td>
+        <td><%= book[:total_author_sales] %></td>
+        <td><%= book[:top_5_in_year] ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get 'author_stats', to: 'author_stats#index'
   get 'top_books', to: 'top_books#index'
+  get 'top_selling_books', to: 'top_selling_books#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
