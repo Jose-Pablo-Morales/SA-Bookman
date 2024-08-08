@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2024_08_07_044756) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "authors", force: :cascade do |t|
     t.string "name"
     t.date "date_of_birth"
@@ -25,14 +28,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_044756) do
     t.text "summary"
     t.date "publication_date"
     t.integer "number_of_sales"
-    t.integer "author_id", null: false
+    t.bigint "author_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.integer "book_id", null: false
+    t.bigint "book_id", null: false
     t.text "review"
     t.integer "score"
     t.integer "up_votes"
@@ -42,7 +45,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_07_044756) do
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer "book_id", null: false
+    t.bigint "book_id", null: false
     t.integer "year"
     t.integer "sales"
     t.datetime "created_at", null: false
