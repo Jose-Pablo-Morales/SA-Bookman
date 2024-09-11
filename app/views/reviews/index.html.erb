@@ -4,6 +4,21 @@
 
 <%= link_to "New review", new_review_path %>
 
+<%= form_with url: reviews_path, method: :get, local: true do %>
+  <%= label_tag :query, "Search for reviews:" %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<h2>Search Results</h2>
+<div id="reviews">
+  <% @reviews.each do |review| %>
+    <%= render review %>
+    <p>
+      <%= link_to "Show this review", review %>
+    </p>
+  <% end %>
+</div>
 
 <div id="reviews">
   <% @reviews.each do |review| %>
