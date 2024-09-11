@@ -3,15 +3,19 @@ version: '3.8'
 services:
   app:
     build: .
-    env_file:
-      - .env
-    command: ./bin/rails server -b 0.0.0.0
+    # command: ./bin/rails server -b 0.0.0.0
+    entrypoint: /bin/bash
     volumes:
       - .:/rails
     ports:
       - "3000:3000"
     depends_on:
       - db
+      - redis
+    environment:
+      DATABASE_URL: "postgresql://myuser:mypassword@db:5432/mydatabase"
+      # REDIS_URL: "redis://redis:6400/0"
+      # RAILS_MASTER_KEY: 411cf26e37f0bceebcb3c6a0e5325ff411288cf1c17db800e546bf17c156e513a33f1e4ad37dbec8632564c4ab104e5ad99adcfd265f14e153e7b7c3406d7cc6
 
   db:
     image: postgres:15-alpine
@@ -21,6 +25,12 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: mydatabase
+
+  redis:
+    image: redis:7.0
+    command: redis-server --port 6400
+    ports:
+      - "6400:6400"
 
 volumes:
   postgres_data:

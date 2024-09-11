@@ -10,6 +10,12 @@ RUN gem install bundler:2.5.11
 # Set the working directory
 WORKDIR /rails
 
+# Set production environment
+ENV RAILS_ENV="production" \
+    BUNDLE_WITHOUT="development"
+    # RAILS_MASTER_KEY="411cf26e37f0bceebcb3c6a0e5325ff411288cf1c17db800e546bf17c156e513a33f1e4ad37dbec8632564c4ab104e5ad99adcfd265f14e153e7b7c3406d7cc6" \
+    # REDIS_URL="redis://redis_app:6400"
+
 # Copy the Gemfile and Gemfile.lock
 COPY Gemfile /rails/Gemfile
 COPY Gemfile.lock /rails/Gemfile.lock
@@ -21,7 +27,7 @@ RUN bundle install
 COPY . /rails
 
 # Precompile assets
-RUN bundle exec rake assets:precompile
+# RUN bundle exec rake assets:precompile
 
 # Expose port 3000 to the Docker host
 EXPOSE 3000
