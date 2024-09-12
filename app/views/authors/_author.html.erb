@@ -5,6 +5,15 @@
   </p>
 
   <p>
+    <strong>Image :</strong>
+    <% if author.profile_image.attached? %>
+      <%= image_tag author.profile_image %>
+    <% else %>
+      <p>No image available</p>
+    <% end %>
+  </p>
+
+  <p>
     <strong>Date of birth:</strong>
     <%= author.date_of_birth %>
   </p>

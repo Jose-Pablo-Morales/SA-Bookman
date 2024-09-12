@@ -1,13 +1,12 @@
 class Book < ApplicationRecord
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+  
   belongs_to :author
   has_many :reviews
   has_many :sales
+  has_one_attached :cover_image
 
- 
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-
-  
   settings do
     mappings dynamic: false do
       indexes :name, type: :text                  
@@ -25,7 +24,6 @@ class Book < ApplicationRecord
     }
   end
 
-  
   def self.search(query)
     if query.present?
       __elasticsearch__.search(
