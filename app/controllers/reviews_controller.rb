@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
 
   # GET /reviews or /reviews.json
   def index
-    @reviews = Review.all
+    @reviews = Review.search(params[:query]).page(params[:page])
   end
 
   # GET /reviews/1 or /reviews/1.json
@@ -58,12 +58,10 @@ class ReviewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_review
       @review = Review.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def review_params
       params.require(:review).permit(:book_id, :review, :score, :up_votes)
     end
