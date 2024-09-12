@@ -10,6 +10,10 @@ gem 'kaminari'
 
 gem 'pg'
 
+gem 'elasticsearch', '~> 7.10'
+gem 'elasticsearch-model', '~> 7.0'
+gem 'elasticsearch-rails', '~> 7.0'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.4"
 

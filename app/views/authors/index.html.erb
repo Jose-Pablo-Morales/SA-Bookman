@@ -3,6 +3,24 @@
 <h1>Authors</h1>
 <%= link_to "New author", new_author_path %>
 
+
+<%= form_with url: authors_path, method: :get, local: true do %>
+  <%= label_tag :query, "Search for authors:" %>
+  <%= text_field_tag :query, params[:query] %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+
+<h2>Search Results</h2>
+<div id="authors">
+  <% @authors.each do |author| %>
+    <%= render author %>
+    <p>
+      <%= link_to "Show this author", author %>
+    </p>
+  <% end %>
+</div>
+
 <div id="authors">
   <% @authors.each do |author| %>
     <%= render author %>
