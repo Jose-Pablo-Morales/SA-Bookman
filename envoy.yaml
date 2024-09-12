@@ -19,6 +19,10 @@ static_resources:
                         - "*"
                       routes:
                         - match:
+                            prefix: "/assets/"
+                          route:
+                            cluster: assets_service
+                        - match:
                             prefix: "/"
                           route:
                             cluster: app_service
@@ -39,3 +43,16 @@ static_resources:
                     socket_address:
                       address: app
                       port_value: 3000
+
+    - name: assets_service
+      connect_timeout: 0.25s
+      type: strict_dns
+      load_assignment:
+        cluster_name: assets_service
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: static_files
+                      port_value: 8081
