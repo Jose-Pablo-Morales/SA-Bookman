@@ -4,6 +4,16 @@
     <%= book.name %>
   </p>
 
+  
+  <p>
+    <strong>Image :</strong>
+    <% if book.cover_image.attached? %>
+      <%= image_tag book.cover_image %>
+    <% else %>
+      <p>No image available</p>
+    <% end %>
+  </p>
+
   <p>
     <strong>Summary:</strong>
     <%= book.summary %>
