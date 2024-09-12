@@ -296,7 +296,7 @@ DEPENDENCIES
   ransack
   redis (~> 5.3)
   redis-rails
-  redis-store
+  redis-store (~> 1.9)
   selenium-webdriver
   sprockets-rails
   stimulus-rails
