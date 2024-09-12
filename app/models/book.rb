@@ -2,7 +2,8 @@ class Book < ApplicationRecord
   belongs_to :author
   has_many :reviews
   has_many :sales
-
+  has_one_attached :cover_image
+  
   def self.search(query)
     if query.present?
       where("LOWER(summary) LIKE ?", "%#{query.downcase}%")
